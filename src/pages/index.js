@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
 
-const url = "https://ttrpg-data.netlify.app";
-// const url = "http://localhost:3000";
+// const url = "https://ttrpg-data.netlify.app";
+const url = "http://localhost:3000";
 
 export default function Home() {
   const [abilities, setAbilities] = useState([]);
 
   useEffect(() => {
     const getAbilities = async () => {
-      const res = await fetch(`${url}/api/abilities`);
+      const res = await fetch(`/api/abilities`);
       const data = await res.json();
       setAbilities(data);
     };

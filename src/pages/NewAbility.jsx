@@ -3,8 +3,8 @@ import Page from "@/components/Page";
 
 import { useRouter } from "next/router";
 
-const url = "https://ttrpg-data.netlify.app";
-// const url = "http://localhost:3000";
+// const url = "https://ttrpg-data.netlify.app";
+const url = "http://localhost:3000";
 
 const NewAbility = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const NewAbility = () => {
   const [description, setDescription] = useState("");
 
   const handleSubmit = async () => {
-    const res = await fetch(`${url}/api/abilities`, {
+    const res = await fetch(`/api/abilities`, {
       method: "POST",
       body: JSON.stringify({
         name,
