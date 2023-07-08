@@ -22,3 +22,14 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+input,
+textarea {
+  border: 1px solid #989898;
+  padding: 4px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #989898;
+}

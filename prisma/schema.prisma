@@ -13,8 +13,9 @@ datasource db {
 model Ability {
   id Int @id @default(autoincrement())
   name String @unique
-  tier Int
-  cost Int
-  prerequisite String
+  tier Int @default(1)
+  cost Int @default(1)
+  ranks Int @default(1)
+  prerequisite String?
   description String
 }

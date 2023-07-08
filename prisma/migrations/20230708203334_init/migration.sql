@@ -2,9 +2,10 @@
 CREATE TABLE "Ability" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
-    "tier" INTEGER NOT NULL,
-    "cost" INTEGER NOT NULL,
-    "prerequisite" TEXT NOT NULL,
+    "tier" INTEGER NOT NULL DEFAULT 1,
+    "cost" INTEGER NOT NULL DEFAULT 1,
+    "ranks" INTEGER NOT NULL DEFAULT 1,
+    "prerequisite" TEXT,
     "description" TEXT NOT NULL
 );
 
