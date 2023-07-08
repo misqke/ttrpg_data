@@ -31,7 +31,6 @@ const NewAbility = () => {
       },
     });
     const data = await res.json();
-    console.log(data);
     // router.push("/");
   };
 

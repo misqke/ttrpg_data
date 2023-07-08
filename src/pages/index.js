@@ -1,7 +1,21 @@
+import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
-import { PrismaClient } from "@prisma/client";
 
-export default function Home({ abilities }) {
+const url = "https://ttrpg-data.netlify.app";
+// const url = "http://localhost:3000";
+
+export default function Home() {
+  const [abilities, setAbilities] = useState([]);
+
+  useEffect(() => {
+    const getAbilities = async () => {
+      const res = await fetch(`${url}/api/abilities`);
+      const data = await res.json();
+      setAbilities(data);
+    };
+    getAbilities();
+  }, []);
+
   return (
     <Page>
       {abilities?.length ? (
@@ -40,16 +54,3 @@ export default function Home({ abilities }) {
     </Page>
   );
 }
-
-export const getServerSideProps = async () => {
-  const url = "https://ttrpg-data.netlify.app";
-  // const url = "http://localhost:3000";
-
-  const res = await fetch(`${url}/api/abilities`);
-  const data = await res.json();
-  return {
-    props: {
-      abilities: data,
-    },
-  };
-};
