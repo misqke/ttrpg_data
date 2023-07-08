@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Page from "@/components/Page";
 import { PrismaClient } from "@prisma/client";
 
@@ -43,13 +42,14 @@ export default function Home({ abilities }) {
 }
 
 export const getServerSideProps = async () => {
-  const prisma = new PrismaClient();
-  const abilities = await prisma.ability.findMany();
+  const url = "https://ttrpg-data.netlify.app";
+  // const url = "http://localhost:3000";
+
+  const res = await fetch(`${url}/api/abilities`);
+  const data = await res.json();
   return {
     props: {
-      abilities: abilities.sort((a, b) =>
-        a.tier < b.tier ? 1 : a.tier > b.tier ? -1 : 0
-      ),
+      abilities: data,
     },
   };
 };

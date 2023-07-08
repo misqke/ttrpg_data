@@ -4,7 +4,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
+    const abilities = await prisma.ability.findMany();
+    const sortedAbilities = abilities.sort((a, b) =>
+      a.tier < b.tier ? 1 : a.tier > b.tier ? -1 : 0
+    );
+    res.status(200).json(sortedAbilities);
+  } else if (req.method === "POST") {
     const { name, tier, cost, ranks, prerequisite, description } = req.body;
     const newAbility = await prisma.ability.create({
       data: {
@@ -16,7 +22,6 @@ export default async function handler(req, res) {
         description: description,
       },
     });
-    console.log(newAbility);
     res.status(200).json(newAbility);
   }
 }
