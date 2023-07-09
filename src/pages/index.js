@@ -31,11 +31,11 @@ export default function Home() {
             </p>
             <p>
               <span className="font-bold">Prerequisities: </span>
-              {a.prerequisite}
+              {a.prerequisites === null ? "None" : a.prerequisites}
             </p>
             <p>
               <span className="font-bold">Cost: </span>
-              {a.points} points
+              {a.cost} {a.cost === 1 ? "point" : "points"}
             </p>
             <p>
               <span className="font-bold">Ranks: </span>

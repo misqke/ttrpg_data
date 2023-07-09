@@ -12,7 +12,7 @@ const NewAbility = () => {
   const [tier, setTier] = useState(1);
   const [cost, setCost] = useState(1);
   const [ranks, setRanks] = useState(1);
-  const [prerequisite, setPrerequisite] = useState("");
+  const [prerequisites, setPrerequisites] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async () => {
@@ -23,7 +23,7 @@ const NewAbility = () => {
         tier,
         cost,
         ranks,
-        prerequisite,
+        prerequisites,
         description,
       }),
       headers: {
@@ -91,8 +91,8 @@ const NewAbility = () => {
           <input
             id="prerequisite"
             type="text"
-            value={prerequisite}
-            onChange={(e) => setPrerequisite(e.target.value)}
+            value={prerequisites}
+            onChange={(e) => setPrerequisites(e.target.value)}
           />
         </div>
         <div>
