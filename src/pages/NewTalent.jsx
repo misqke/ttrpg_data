@@ -15,7 +15,8 @@ const NewAbility = () => {
   const [prerequisites, setPrerequisites] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const res = await fetch(`/api/abilities`, {
       method: "POST",
       body: JSON.stringify({
@@ -36,7 +37,10 @@ const NewAbility = () => {
 
   return (
     <Page>
-      <form onSubmit={handleSubmit} className="flex flex-col w-fit gap-4">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="flex flex-col w-fit gap-4"
+      >
         <div>
           <label className="block" htmlFor="name">
             Name

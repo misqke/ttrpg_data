@@ -1,55 +1,59 @@
 import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
 
-// const url = "https://ttrpg-data.netlify.app";
-const url = "http://localhost:3000";
-
 export default function Home() {
-  const [abilities, setAbilities] = useState([]);
+  const [talents, setTalents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getAbilities = async () => {
-      const res = await fetch(`/api/abilities`);
+    const getTalents = async () => {
+      const res = await fetch(`/api/talents`);
       const data = await res.json();
-      setAbilities(data);
+      setTalents(data);
+      setLoading(false);
     };
-    getAbilities();
+    getTalents();
   }, []);
 
   return (
     <Page>
-      {abilities?.length ? (
-        abilities.map((a) => (
-          <div key={a.id} className="flex flex-col gap-0 my-2">
+      {loading ? (
+        <svg
+          className="animate-spin h-5 w-5 mr-3 ..."
+          viewBox="0 0 24 24"
+        ></svg>
+      ) : talents?.length ? (
+        talents.map((t) => (
+          <div key={t.id} className="flex flex-col gap-0 my-2">
             <p>
               <span className="font-bold">Name: </span>
-              {a.name}
+              {t.name}
             </p>
             <p>
               <span className="font-bold">Tier: </span>
-              {a.tier}
+              {t.tier}
             </p>
             <p>
               <span className="font-bold">Prerequisities: </span>
-              {a.prerequisites === null ? "None" : a.prerequisites}
+              {t.prerequisites === null ? "None" : t.prerequisites}
             </p>
             <p>
               <span className="font-bold">Cost: </span>
-              {a.cost} {a.cost === 1 ? "point" : "points"}
+              {t.cost} {t.cost === 1 ? "point" : "points"}
             </p>
             <p>
               <span className="font-bold">Ranks: </span>
-              {a.ranks}
+              {t.ranks}
             </p>
             <p>
               <span className="font-bold">Description: </span>
-              {a.description}
+              {t.description}
             </p>
             <hr className="my-2" />
           </div>
         ))
       ) : (
-        <p>No Abilities</p>
+        <p>No talents</p>
       )}
     </Page>
   );

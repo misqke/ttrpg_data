@@ -75,21 +75,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@supabase/auth-helpers-nextjs@^0.7.2":
-  "integrity" "sha512-n5IyGBYJV/WiR5Rgw4CUaiJYiOv9yW2of4ZP4EyzKt2O6/6rztt7PcGE4AoK2vERw+fb5F2QtJBdt6J5eOYCCw=="
-  "resolved" "https://registry.npmjs.org/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.7.2.tgz"
-  "version" "0.7.2"
-  dependencies:
-    "@supabase/auth-helpers-shared" "0.4.1"
-    "set-cookie-parser" "^2.6.0"
-
-"@supabase/auth-helpers-shared@0.4.1":
-  "integrity" "sha512-IEDX9JzWkIjQiLUaP4Qy5YDiG0jFQatWfS+jw8cCQs6QfbNdEPd2Y3qonwGHnM90CZom9SvjuylBv2pFVAL7Lw=="
-  "resolved" "https://registry.npmjs.org/@supabase/auth-helpers-shared/-/auth-helpers-shared-0.4.1.tgz"
-  "version" "0.4.1"
-  dependencies:
-    "jose" "^4.14.3"
-
 "@supabase/functions-js@^2.1.0":
   "integrity" "sha512-QCR6pwJs9exCl37bmpMisUd6mf+0SUBJ6mUpiAjEkSJ/+xW8TCuO14bvkWHADd5hElJK9MxNlMQXxSA4DRz9nQ=="
   "resolved" "https://registry.npmjs.org/@supabase/functions-js/-/functions-js-2.1.2.tgz"
@@ -127,7 +112,7 @@
   dependencies:
     "cross-fetch" "^3.1.5"
 
-"@supabase/supabase-js@^2.19.0", "@supabase/supabase-js@^2.26.0":
+"@supabase/supabase-js@^2.26.0":
   "integrity" "sha512-RXmTPTobaYAwkSobadHZmEVLmzX3SGrtRZIGfLWnLv92VzBRrjuXn0a+bJqKl50GUzsyqPA+j5pod7EwMkcH5A=="
   "resolved" "https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.26.0.tgz"
   "version" "2.26.0"
@@ -506,11 +491,6 @@
   "resolved" "https://registry.npmjs.org/jiti/-/jiti-1.19.1.tgz"
   "version" "1.19.1"
 
-"jose@^4.14.3":
-  "integrity" "sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g=="
-  "resolved" "https://registry.npmjs.org/jose/-/jose-4.14.4.tgz"
-  "version" "4.14.4"
-
 "js-tokens@^3.0.0 || ^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -798,11 +778,6 @@
   "version" "0.23.0"
   dependencies:
     "loose-envify" "^1.1.0"
-
-"set-cookie-parser@^2.6.0":
-  "integrity" "sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ=="
-  "resolved" "https://registry.npmjs.org/set-cookie-parser/-/set-cookie-parser-2.6.0.tgz"
-  "version" "2.6.0"
 
 "source-map-js@^1.0.2":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
