@@ -29,7 +29,28 @@ textarea {
   padding: 4px;
 }
 
-button {
+.button {
   padding: 0.5rem 1rem;
   border: 1px solid #989898;
+  width: fit-content;
+}
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+
+.table-container table {
+  width: 100%;
+  min-width: 1000px;
+}
+
+.clickable {
+  cursor: pointer;
+  transition-duration: 150ms;
+}
+
+.clickable:hover {
+  background: #99f6e4;
 }

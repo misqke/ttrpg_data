@@ -16,7 +16,7 @@ const Page = ({ children }) => {
   }, []);
 
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col p-4 gap-2 w-full max-w-screen-xl mx-auto">
       {loading ? (
         <svg
           className="animate-spin h-5 w-5 mr-3 ..."

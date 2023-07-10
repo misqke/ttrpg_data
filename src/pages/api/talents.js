@@ -3,11 +3,20 @@ import { supabase } from "../../../utils/supabase";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const { data, error } = await supabase.from("talents").select("*");
-    const sortedAbilities = data.sort((a, b) =>
-      a.tier < b.tier ? 1 : a.tier > b.tier ? -1 : 0
-    );
-    res.status(200).json(sortedAbilities);
+    const { id } = req.query;
+    if (id === undefined) {
+      const { data, error } = await supabase.from("talents").select("*");
+      const sortedAbilities = data.sort((a, b) =>
+        a.tier < b.tier ? 1 : a.tier > b.tier ? -1 : 0
+      );
+      res.status(200).json(sortedAbilities);
+    } else {
+      const { data, error } = await supabase
+        .from("talents")
+        .select("*")
+        .eq("id", id);
+      res.status(200).json(data[0]);
+    }
   } else if (req.method === "POST") {
     const { name, tier, cost, ranks, prerequisites, description } = req.body;
     const { error } = await supabase.from("talents").insert({
