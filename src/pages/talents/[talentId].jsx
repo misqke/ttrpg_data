@@ -1,5 +1,6 @@
 import React from "react";
 import Page from "@/components/Page";
+import axios from "axios";
 
 const ViewTalent = ({ talent }) => {
   return (
@@ -37,8 +38,7 @@ export default ViewTalent;
 
 export const getServerSideProps = async (req) => {
   const talentId = req.query.talentId;
-  const res = await fetch(`http://localhost:3000/api/talents/?id=${talentId}`);
-  const data = await res.json();
+  const { data } = await axios.get(`/api/talents/?id=${talentId}`);
   return {
     props: {
       talent: data,

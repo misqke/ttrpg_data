@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Talent({ talents }) {
   const router = useRouter();
@@ -60,8 +61,7 @@ export default function Talent({ talents }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/talents`);
-  const data = await res.json();
+  const { data } = await axios.get("/api/talents");
   return {
     props: {
       talents: data,
