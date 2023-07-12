@@ -34,12 +34,15 @@ export default async function handler(req, res) {
     res.status(201).json();
   }
   // PATCH
-  else if (req.method === "PATCH") {
+  else if (req.method === "PUT") {
     const updatedTalent = req.body;
     const { error } = await supabase
       .from("talents")
       .update(updatedTalent)
       .eq("id", updatedTalent.id);
+    if (error) {
+      console.log(error);
+    }
     res.status(200).json(updatedTalent);
   }
 }

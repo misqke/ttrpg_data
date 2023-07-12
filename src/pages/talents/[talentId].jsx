@@ -20,7 +20,7 @@ const ViewTalent = ({ talent }) => {
 
   const handleUpdateTalent = async (e) => {
     e.preventDefault();
-    const { data } = await axios.patch("/api/talents", {
+    const { data } = await axios.put("/api/talents", {
       id: talent.id,
       name,
       tier,
@@ -103,7 +103,7 @@ const ViewTalent = ({ talent }) => {
         </div>
         {edit && (
           <div className="flex flex-row items-center justify-end">
-            <button type="button" className="button">
+            <button type="submit" className="button">
               Submit
             </button>
           </div>
