@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Page from "@/components/Page";
+import axios from "axios";
 
 import { useRouter } from "next/router";
-
-// const url = "https://ttrpg-data.netlify.app";
-const url = "http://localhost:3000";
 
 const NewAbility = () => {
   const router = useRouter();
@@ -17,30 +15,20 @@ const NewAbility = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`/api/abilities`, {
-      method: "POST",
-      body: JSON.stringify({
-        name,
-        tier,
-        cost,
-        ranks,
-        prerequisites,
-        description,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const { data } = await axios.post("/api/talents", {
+      name,
+      tier,
+      cost,
+      ranks,
+      prerequisites,
+      description,
     });
-    const data = await res.json();
-    // router.push("/");
+    router.push("/");
   };
 
   return (
     <Page>
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-        className="flex flex-col w-fit gap-4"
-      >
+      <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
         <div>
           <label className="block" htmlFor="name">
             Name

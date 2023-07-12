@@ -2,6 +2,7 @@
 import { supabase } from "../../../utils/supabase";
 
 export default async function handler(req, res) {
+  // GET
   if (req.method === "GET") {
     const { id } = req.query;
     if (id === undefined) {
@@ -17,7 +18,9 @@ export default async function handler(req, res) {
         .eq("id", id);
       res.status(200).json(data[0]);
     }
-  } else if (req.method === "POST") {
+  }
+  // POST
+  else if (req.method === "POST") {
     const { name, tier, cost, ranks, prerequisites, description } = req.body;
     const { error } = await supabase.from("talents").insert({
       name: name,
@@ -29,5 +32,14 @@ export default async function handler(req, res) {
     });
     console.log(error);
     res.status(201).json();
+  }
+  // PATCH
+  else if (req.method === "PATCH") {
+    const updatedTalent = req.body;
+    const { error } = await supabase
+      .from("talents")
+      .update(updatedTalent)
+      .eq("id", updatedTalent.id);
+    res.status(200).json(updatedTalent);
   }
 }
