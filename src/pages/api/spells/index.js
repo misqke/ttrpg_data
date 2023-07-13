@@ -29,10 +29,10 @@ const getSpell = async (id) => {
 };
 
 const insertSpell = async (spell, spellLevels) => {
-  const spell = await supabase.from("spells").insert(spell).select()[0];
-  const spellLevels = await supabase
+  const newSpell = await supabase.from("spells").insert(spell).select()[0];
+  const newSpellLevels = await supabase
     .from("spell_levels")
     .insert(spellLevels)
     .select();
-  return { spell, spellLevels };
+  return { spell: newSpell, spellLevels: newSpellLevels };
 };
