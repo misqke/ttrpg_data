@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
   // POST
   else if (req.method === "POST") {
-    const {spell, spellLevels} = req.body;
+    const { spell, spellLevels } = req.body;
     const newSpell = await insertSpell(spell, spellLevels);
     console.log(newSpell);
     res.status(201).json(newSpell);
@@ -28,8 +28,11 @@ const getSpell = async (id) => {
   return { spell: spell.data[0], spellInfo: spellInfo.data };
 };
 
-const insertSpell = async (spell, spellLevels) {
+const insertSpell = async (spell, spellLevels) => {
   const spell = await supabase.from("spells").insert(spell).select()[0];
-  const spellLevels = await supabase.from("spell_levels").insert(spellLevels).select();
-  return {spell, spellLevels};
-}
+  const spellLevels = await supabase
+    .from("spell_levels")
+    .insert(spellLevels)
+    .select();
+  return { spell, spellLevels };
+};
