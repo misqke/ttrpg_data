@@ -23,7 +23,7 @@ const NewAbility = () => {
       prerequisites,
       description,
     });
-    router.push("/");
+    router.push("/talents");
   };
 
   return (

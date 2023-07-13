@@ -29,6 +29,7 @@ textarea {
   padding: 4px;
   vertical-align: middle;
   box-sizing: border-box;
+  width: 100%;
 }
 
 textarea {
@@ -37,18 +38,21 @@ textarea {
 }
 
 input:disabled,
-textarea:disabled {
+textarea:disabled,
+select:disabled {
   border-color: transparent;
   background: transparent;
+  appearance: none;
 }
 
 .view-label {
   font-weight: 600;
   margin: 4px;
+  width: 125px;
 }
 
 .view-label + input {
-  width: 100%;
+  flex-grow: 1;
 }
 
 .button {
@@ -74,6 +78,7 @@ textarea:disabled {
 .table-container table {
   width: 100%;
   min-width: 1000px;
+  table-layout: auto;
 }
 
 .clickable {
@@ -83,4 +88,18 @@ textarea:disabled {
 
 .clickable:hover {
   background: #99f6e4;
+}
+
+.comment-container {
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.comment h6 {
+  font-weight: 600;
 }

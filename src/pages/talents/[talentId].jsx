@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Page from "@/components/Page";
+import CommentBox from "@/components/CommentBox";
 import axios from "axios";
 import Link from "next/link";
 
@@ -110,6 +111,7 @@ const ViewTalent = ({ talent }) => {
         )}
       </form>
       <hr />
+      <CommentBox topic="talents" id={talent.id} />
     </Page>
   );
 };

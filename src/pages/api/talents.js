@@ -8,7 +8,11 @@ export default async function handler(req, res) {
     if (id === undefined) {
       const { data, error } = await supabase.from("talents").select("*");
       const sortedAbilities = data.sort((a, b) =>
-        a.tier < b.tier ? 1 : a.tier > b.tier ? -1 : 0
+        Number(a.tier) > Number(b.tier)
+          ? 1
+          : Number(a.tier) < Number(b.tier)
+          ? -1
+          : 0
       );
       res.status(200).json(sortedAbilities);
     } else {

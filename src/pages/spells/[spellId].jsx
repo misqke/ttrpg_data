@@ -3,125 +3,221 @@ import Page from "@/components/Page";
 import axios from "axios";
 import Link from "next/link";
 
-const ViewTalent = ({ talent }) => {
-  const [name, setName] = useState(talent.name);
-  const [tier, setTier] = useState(talent.tier);
-  const [cost, setCost] = useState(talent.cost);
-  const [ranks, setRanks] = useState(talent.ranks);
-  const [prerequisites, setPrerequisites] = useState(
-    talent.prerequisites || "None"
-  );
-  const [description, setDescription] = useState(talent.description);
+const ViewSpell = ({ spellData }) => {
+  const [spell, setSpell] = useState(spellData.spell);
+  const [spellLevels, setSpellLevels] = useState(spellData.spellInfo);
   const [edit, setEdit] = useState(false);
 
   const handleEditMode = () => {
     setEdit((prev) => !prev);
   };
 
-  const handleUpdateTalent = async (e) => {
+  const handleUpdateSpell = async (e) => {
     e.preventDefault();
-    const { data } = await axios.patch("/api/talents", {
-      id: talent.id,
-      name,
-      tier,
-      cost,
-      ranks,
-      prerequisites,
-      description,
-    });
+    const { data } = await axios.patch("/api/spells", { spell, spellLevels });
     setEdit(false);
   };
 
   return (
     <Page>
-      <div className="flex row items-center justify-between">
-        <Link className="button" href={"/talents"}>
-          Back
-        </Link>
-        <button className="button" type="button" onClick={handleEditMode}>
-          {edit ? "Cancel" : "Edit"}
-        </button>
-      </div>
-      <hr />
-      <form
-        className="flex flex-col gap-1"
-        onSubmit={(e) => handleUpdateTalent(e)}
-      >
-        <div className="flex row items-start">
-          <label className="view-label">Name: </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            disabled={!edit}
-          />
-        </div>
-        <div className="flex row items-start">
-          <label className="view-label">Tier: </label>
-          <input
-            type="number"
-            value={tier}
-            onChange={(e) => setTier(e.target.value)}
-            disabled={!edit}
-          />
-        </div>
-        <div className="flex row items-start">
-          <label className="view-label">Cost: </label>
-          <input
-            type="number"
-            value={cost}
-            onChange={(e) => setCost(e.target.value)}
-            disabled={!edit}
-          />
-        </div>
-        <div className="flex row items-start">
-          <label className="view-label">Ranks: </label>
-          <input
-            type="number"
-            value={ranks}
-            onChange={(e) => setRanks(e.target.value)}
-            disabled={!edit}
-          />
-        </div>
-        <div className="flex row items-start">
-          <label className="view-label">Prerequisites: </label>
-          <input
-            type="text"
-            value={prerequisites}
-            onChange={(e) => setPrerequisites(e.target.value)}
-            disabled={!edit}
-          />
-        </div>
-        <div className="flex row items-start">
-          <label className="view-label">Description: </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            disabled={!edit}
-            rows={5}
-          />
-        </div>
-        {edit && (
-          <div className="flex flex-row items-center justify-end">
-            <button type="button" className="button">
-              Submit
+      {spell ? (
+        <>
+          <div className="flex row items-center justify-between">
+            <Link className="button" href={"/spells"}>
+              Back
+            </Link>
+            <button className="button" type="button" onClick={handleEditMode}>
+              {edit ? "Cancel" : "Edit"}
             </button>
           </div>
-        )}
-      </form>
-      <hr />
+          <hr />
+          <form
+            className="flex flex-col gap-1"
+            onSubmit={(e) => handleUpdateSpell(e)}
+          >
+            <div className="flex row items-start">
+              <label className="view-label">Name: </label>
+              <input
+                type="text"
+                value={spell.name}
+                onChange={(e) =>
+                  setSpell((prev) => ({ ...prev, name: e.target.value }))
+                }
+                disabled={!edit}
+              />
+            </div>
+            <div className="flex row items-start">
+              <label className="view-label">Tier: </label>
+              <input
+                type="number"
+                value={spell.tier}
+                onChange={(e) =>
+                  setSpell((prev) => ({ ...prev, tier: e.target.value }))
+                }
+                disabled={!edit}
+              />
+            </div>
+            <div className="flex row items-start">
+              <label className="view-label">Casting Time: </label>
+              <input
+                type="text"
+                value={spell.casting_time}
+                onChange={(e) =>
+                  setSpell((prev) => ({
+                    ...prev,
+                    casting_time: e.target.value,
+                  }))
+                }
+                disabled={!edit}
+              />
+            </div>
+            <div className="flex row items-start">
+              <label className="view-label">Concentration: </label>
+              <select
+                value={spell.concentration}
+                className="my-auto"
+                onChange={(e) =>
+                  setSpell((prev) => ({
+                    ...prev,
+                    concentration: e.target.value,
+                  }))
+                }
+                disabled={!edit}
+              >
+                <option value={false}>False</option>
+                <option value={true}>True</option>
+              </select>
+            </div>
+            <div className="flex row items-start">
+              <label className="view-label">Description: </label>
+              <textarea
+                value={spell.description}
+                onChange={(e) =>
+                  setSpell((prev) => ({ ...prev, description: e.target.value }))
+                }
+                disabled={!edit}
+                rows={3}
+              />
+            </div>
+            <div className="table-container">
+              <table className="border-collapse border border-slate-300">
+                <thead className="bg-teal-500  text-white">
+                  <tr>
+                    <th className="border border-slate-300 p-1 w-5">Level</th>
+                    <th className="border border-slate-300 p-1 w-10">MP</th>
+                    <th className="border border-slate-300 p-1 w-28">Range</th>
+                    <th className="border border-slate-300 p-1 w-28">
+                      Duration
+                    </th>
+                    <th className="border border-slate-300 p-1">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {spellLevels.map((s, i) => (
+                    <tr key={s.id}>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].level}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], name: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].magic_points}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], magic_points: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].range}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], range: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].duration}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], duration: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].description}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], description: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {edit && (
+              <div className="flex flex-row items-center justify-end">
+                <button type="button" className="button">
+                  Submit
+                </button>
+              </div>
+            )}
+          </form>
+          <hr />
+        </>
+      ) : (
+        <svg
+          className="animate-spin h-5 w-5 mr-3 ..."
+          viewBox="0 0 24 24"
+        ></svg>
+      )}
     </Page>
   );
 };
 
-export default ViewTalent;
+export default ViewSpell;
 
 export const getServerSideProps = async (req) => {
-  const talentId = req.query.talentId;
-  const { data } = await axios.get(`/api/talents/?id=${talentId}`);
+  const spellId = req.query.spellId;
+  const { data } = await axios.get(`/api/spells/?id=${spellId}`);
   return {
     props: {
-      talent: data,
+      spellData: data,
     },
   };
 };
