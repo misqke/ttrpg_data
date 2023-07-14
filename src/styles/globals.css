@@ -23,6 +23,14 @@ body {
   overflow-x: hidden;
 }
 
+section {
+  border-bottom: 1px solid #cacaca;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 input,
 textarea {
   border: 1px solid #989898;
