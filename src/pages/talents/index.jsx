@@ -20,7 +20,14 @@ export default function Talent({ talents }) {
           New Talent
         </Link>
       </div>
-
+      <hr />
+      <p>
+        Talents are gained though lineage and background abilities as well as by
+        spending talent points when you level up. New spell tiers are unlocked
+        at every odd charcter level (tier 2 at level 3, tier 3 at level 5,
+        etc.).
+      </p>
+      <hr />
       {talents?.length ? (
         <>
           <div className="table-container">

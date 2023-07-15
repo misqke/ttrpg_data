@@ -20,7 +20,16 @@ export default function Talent({ spells }) {
           New Spell
         </Link>
       </div>
-
+      <hr />
+      <p>
+        Spells are unlocked though lineage and background features as well as by
+        spending talent points when you level up on Spell Talents (Spells: Tier
+        1, Spells: Tier 2, etc.). Each spell has a Tier and a number of Levels
+        the spell can be cast at. In order to cast a spell at a given level,
+        your character level must be equal to or greater than the spells Tier
+        multiplied by the spells Level.
+      </p>
+      <hr />
       {spells?.length ? (
         <>
           <div className="table-container">

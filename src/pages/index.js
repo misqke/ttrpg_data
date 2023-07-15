@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
+import CommentBox from "@/components/CommentBox";
 import axios from "axios";
 
 export default function Home({ lineage, background }) {
@@ -81,6 +82,22 @@ export default function Home({ lineage, background }) {
           </table>
         </div>
       </section>
+      <section>
+        <h2>Leveling</h2>
+        <p>
+          You start the game with two talent points that can be spent on Tier 0
+          or 1 talents.
+        </p>
+        <p>
+          Each time you gain a level, you gain two talent points that can be
+          spent on talents of any tier for which you are a high enough level.
+        </p>
+        <p>
+          New tiers of talents are unlocked at odd levels (tier 2 at level 3,
+          tier 3 at level 5, etc.)
+        </p>
+      </section>
+      <CommentBox topic="character" id={0} />
     </Page>
   );
 }
