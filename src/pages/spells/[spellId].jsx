@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import Page from "@/components/Page";
+import CommentBox from "@/components/CommentBox";
 import axios from "axios";
 import Link from "next/link";
 
 const ViewSpell = ({ spellData }) => {
+  const [originalSpellData, setOriginalSpellData] = useState(spellData);
   const [spell, setSpell] = useState(spellData.spell);
-  const [spellLevels, setSpellLevels] = useState(spellData.spellInfo);
+  const [spellLevels, setSpellLevels] = useState(spellData.spellLevels);
   const [edit, setEdit] = useState(false);
 
   const handleEditMode = () => {
+    if (edit) {
+      setSpellLevels(originalSpellData.spellLevels);
+      setSpell(originalSpellData.spell);
+    }
     setEdit((prev) => !prev);
   };
 
   const handleUpdateSpell = async (e) => {
     e.preventDefault();
-    const { data } = await axios.patch("/api/spells", { spell, spellLevels });
+    const { data } = await axios.put("/api/spells", { spell, spellLevels });
+    setOriginalSpellData(data);
     setEdit(false);
   };
 
@@ -113,92 +120,97 @@ const ViewSpell = ({ spellData }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {spellLevels.map((s, i) => (
-                    <tr key={s.id}>
-                      <td className="border border-slate-300 p-1">
-                        <input
-                          type="text"
-                          disabled={!edit}
-                          value={spellLevels[i].level}
-                          onChange={(e) =>
-                            setSpellLevels((prev) => [
-                              ...prev.slice(0, i),
-                              { ...prev[i], name: e.target.value },
-                              ...prev.slice(i + 1),
-                            ])
-                          }
-                        />
-                      </td>
-                      <td className="border border-slate-300 p-1">
-                        <input
-                          type="text"
-                          disabled={!edit}
-                          value={spellLevels[i].magic_points}
-                          onChange={(e) =>
-                            setSpellLevels((prev) => [
-                              ...prev.slice(0, i),
-                              { ...prev[i], magic_points: e.target.value },
-                              ...prev.slice(i + 1),
-                            ])
-                          }
-                        />
-                      </td>
-                      <td className="border border-slate-300 p-1">
-                        <input
-                          type="text"
-                          disabled={!edit}
-                          value={spellLevels[i].range}
-                          onChange={(e) =>
-                            setSpellLevels((prev) => [
-                              ...prev.slice(0, i),
-                              { ...prev[i], range: e.target.value },
-                              ...prev.slice(i + 1),
-                            ])
-                          }
-                        />
-                      </td>
-                      <td className="border border-slate-300 p-1">
-                        <input
-                          type="text"
-                          disabled={!edit}
-                          value={spellLevels[i].duration}
-                          onChange={(e) =>
-                            setSpellLevels((prev) => [
-                              ...prev.slice(0, i),
-                              { ...prev[i], duration: e.target.value },
-                              ...prev.slice(i + 1),
-                            ])
-                          }
-                        />
-                      </td>
-                      <td className="border border-slate-300 p-1">
-                        <input
-                          type="text"
-                          disabled={!edit}
-                          value={spellLevels[i].description}
-                          onChange={(e) =>
-                            setSpellLevels((prev) => [
-                              ...prev.slice(0, i),
-                              { ...prev[i], description: e.target.value },
-                              ...prev.slice(i + 1),
-                            ])
-                          }
-                        />
-                      </td>
-                    </tr>
-                  ))}
+                  {spellLevels
+                    .sort((a, b) =>
+                      a.level > b.level ? 1 : a.level < b.level ? -1 : 0
+                    )
+                    .map((s, i) => (
+                      <tr key={s.id}>
+                        <td className="border border-slate-300 p-1">
+                          <input
+                            type="text"
+                            disabled={!edit}
+                            value={spellLevels[i].level}
+                            onChange={(e) =>
+                              setSpellLevels((prev) => [
+                                ...prev.slice(0, i),
+                                { ...prev[i], level: e.target.value },
+                                ...prev.slice(i + 1),
+                              ])
+                            }
+                          />
+                        </td>
+                        <td className="border border-slate-300 p-1">
+                          <input
+                            type="text"
+                            disabled={!edit}
+                            value={spellLevels[i].magic_points}
+                            onChange={(e) =>
+                              setSpellLevels((prev) => [
+                                ...prev.slice(0, i),
+                                { ...prev[i], magic_points: e.target.value },
+                                ...prev.slice(i + 1),
+                              ])
+                            }
+                          />
+                        </td>
+                        <td className="border border-slate-300 p-1">
+                          <input
+                            type="text"
+                            disabled={!edit}
+                            value={spellLevels[i].range}
+                            onChange={(e) =>
+                              setSpellLevels((prev) => [
+                                ...prev.slice(0, i),
+                                { ...prev[i], range: e.target.value },
+                                ...prev.slice(i + 1),
+                              ])
+                            }
+                          />
+                        </td>
+                        <td className="border border-slate-300 p-1">
+                          <input
+                            type="text"
+                            disabled={!edit}
+                            value={spellLevels[i].duration}
+                            onChange={(e) =>
+                              setSpellLevels((prev) => [
+                                ...prev.slice(0, i),
+                                { ...prev[i], duration: e.target.value },
+                                ...prev.slice(i + 1),
+                              ])
+                            }
+                          />
+                        </td>
+                        <td className="border border-slate-300 p-1">
+                          <input
+                            type="text"
+                            disabled={!edit}
+                            value={spellLevels[i].description}
+                            onChange={(e) =>
+                              setSpellLevels((prev) => [
+                                ...prev.slice(0, i),
+                                { ...prev[i], description: e.target.value },
+                                ...prev.slice(i + 1),
+                              ])
+                            }
+                          />
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
             {edit && (
               <div className="flex flex-row items-center justify-end">
-                <button type="button" className="button">
+                <button type="submit" className="button">
                   Submit
                 </button>
               </div>
             )}
           </form>
           <hr />
+          <CommentBox topic="spells" id={spell.id} />
         </>
       ) : (
         <svg

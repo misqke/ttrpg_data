@@ -28,13 +28,13 @@ const CommentBox = ({ topic, id }) => {
         `/api/comments/?topic=${topic}&id=${id}`
       );
       setComments(data);
-      console.log(data);
     };
     getComments();
   }, []);
 
   return (
     <div className="comments-container">
+      <h2>Discussion</h2>
       {comments.map((c, i) => (
         <CommentCard key={c.id} comment={c} />
       ))}

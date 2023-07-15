@@ -4,30 +4,40 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 
+class SpellLevel {
+  constructor() {
+    this.level = 1;
+    this.magic_points = 1;
+    this.range = "";
+    this.duration = "Instantaneous";
+    this.description = "";
+  }
+}
+
 const NewSpell = () => {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [tier, setTier] = useState(1);
-  const [range, setRange] = useState("");
-  const [duration, setDuration] = useState("Instantanious");
-  const [casting_time, setCasting_time] = useState("1 Action");
-  const [magic_points, setMagic_points] = useState("");
-  const [concentration, setConcentration] = useState(false);
-  const [description, setDescription] = useState("");
-  const [upcast, setUpcast] = useState("");
+  const [spell, setSpell] = useState({
+    tier: 1,
+    name: "",
+    casting_time: "Action",
+    concentration: false,
+    description: "",
+  });
+  const [spellLevels, setSpellLevels] = useState([new SpellLevel()]);
+
+  const handleDeleteLevel = (i) => {
+    setSpellLevels((prev) => [...prev.slice(0, i), ...prev.slice(i + 1)]);
+  };
+
+  const handleAddLevel = () => {
+    setSpellLevels((prev) => [...prev, new SpellLevel()]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await axios.post("/api/spells", {
-      name,
-      tier,
-      range,
-      duration,
-      casting_time,
-      magic_points,
-      concentration,
-      description,
-      upcast,
+      spell,
+      spellLevels,
     });
     router.push("/spells");
   };
@@ -35,116 +45,168 @@ const NewSpell = () => {
   return (
     <Page>
       <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
-        <div>
-          <label className="block" htmlFor="name">
-            Name
-          </label>
+        <div className="flex row items-start">
+          <label className="view-label">Name: </label>
           <input
-            id="name"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={spell.name}
+            onChange={(e) =>
+              setSpell((prev) => ({ ...prev, name: e.target.value }))
+            }
           />
         </div>
-        <div>
-          <label className="block" htmlFor="tier">
-            Tier
-          </label>
+        <div className="flex row items-start">
+          <label className="view-label">Tier: </label>
           <input
-            id="tier"
             type="number"
-            min="1"
-            value={tier}
-            onChange={(e) => setTier(e.target.value)}
+            value={spell.tier}
+            onChange={(e) =>
+              setSpell((prev) => ({ ...prev, tier: e.target.value }))
+            }
           />
         </div>
-        <div>
-          <label className="block" htmlFor="range">
-            Range
-          </label>
+        <div className="flex row items-start">
+          <label className="view-label">Casting Time: </label>
           <input
-            id="range"
             type="text"
-            min="1"
-            value={range}
-            onChange={(e) => setRange(e.target.value)}
+            value={spell.casting_time}
+            onChange={(e) =>
+              setSpell((prev) => ({
+                ...prev,
+                casting_time: e.target.value,
+              }))
+            }
           />
         </div>
-        <div>
-          <label className="block" htmlFor="duration">
-            Duration
-          </label>
-          <input
-            id="duration"
-            type="text"
-            min="1"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block" htmlFor="casting_time">
-            Casting Time
-          </label>
-          <input
-            id="casting_time"
-            type="text"
-            value={casting_time}
-            onChange={(e) => setCasting_time(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block" htmlFor="magic_points">
-            Magic Points
-          </label>
-          <input
-            id="magic_points"
-            type="number"
-            value={magic_points}
-            onChange={(e) => setMagic_points(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block" htmlFor="concentration">
-            Concentration
-          </label>
+        <div className="flex row items-start">
+          <label className="view-label">Concentration: </label>
           <select
-            id="concentration"
-            value={concentration}
-            onChange={(e) => setConcentration(e.target.value)}
+            value={spell.concentration}
+            className="my-auto"
+            onChange={(e) =>
+              setSpell((prev) => ({
+                ...prev,
+                concentration: e.target.value,
+              }))
+            }
           >
-            <option value="false">False</option>
-            <option value="true">True</option>
+            <option value={false}>False</option>
+            <option value={true}>True</option>
           </select>
         </div>
-        <div>
-          <label className="block" htmlFor="description">
-            Description
-          </label>
+        <div className="flex row items-start">
+          <label className="view-label">Description: </label>
           <textarea
-            className="w-full"
-            id="description"
-            value={description}
-            rows={5}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="block" htmlFor="upcast">
-            Upcast
-          </label>
-          <textarea
-            className="w-full"
-            id="description"
-            value={upcast}
-            rows={5}
-            onChange={(e) => setUpcast(e.target.value)}
+            value={spell.description}
+            onChange={(e) =>
+              setSpell((prev) => ({ ...prev, description: e.target.value }))
+            }
+            rows={3}
           />
         </div>
 
-        <button className="button" type="submit">
-          Submit
-        </button>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th className="p-1 w-5">Level</th>
+                <th className="p-1 w-10">MP</th>
+                <th className="p-1 w-28">Range</th>
+                <th className="p-1 w-28">Duration</th>
+                <th className="p-1">Description</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {spellLevels.map((s, i) => (
+                <tr key={i}>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="number"
+                      value={spellLevels[i].level}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], level: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="number"
+                      value={spellLevels[i].magic_points}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], magic_points: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="text"
+                      value={spellLevels[i].range}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], range: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="text"
+                      value={spellLevels[i].duration}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], duration: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="text"
+                      value={spellLevels[i].description}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], description: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <button type="button" onClick={(e) => handleDeleteLevel(i)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex row items-center justify-between">
+          <button
+            className="button"
+            type="button"
+            onClick={(e) => handleAddLevel()}
+          >
+            Add Level
+          </button>
+          <button className="button" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </Page>
   );

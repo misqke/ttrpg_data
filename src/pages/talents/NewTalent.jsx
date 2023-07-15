@@ -100,7 +100,7 @@ const NewAbility = () => {
           />
         </div>
 
-        <button className="button" type="submit">
+        <button className="button ms-auto" type="submit">
           Submit
         </button>
       </form>

@@ -5,11 +5,11 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { id } = req.query;
     if (id === undefined) {
-      const { data, error } = await supabase.from("lineage").select("*");
+      const { data, error } = await supabase.from("background").select("*");
       res.status(200).json(data);
     } else {
       const { data, error } = await supabase
-        .from("lineage")
+        .from("background")
         .select("*")
         .eq("id", id);
       res.status(200).json(data[0]);

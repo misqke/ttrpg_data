@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Page from "@/components/Page";
+import CommentBox from "@/components/CommentBox";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -13,11 +14,15 @@ export default function Talent({ spells }) {
 
   return (
     <Page>
+      <div className="flex row items-center justify-between">
+        <h1>Spells</h1>
+        <Link className="button" href={"/spells/NewSpell"}>
+          New Spell
+        </Link>
+      </div>
+
       {spells?.length ? (
         <>
-          <Link className="button" href={"/spells/NewSpell"}>
-            New Spell
-          </Link>
           <div className="table-container">
             <table className="border-collapse border border-slate-300">
               <thead className="bg-teal-500  text-white">
@@ -56,6 +61,8 @@ export default function Talent({ spells }) {
       ) : (
         <p>No spells</p>
       )}
+      <hr />
+      <CommentBox topic="spells" id={0} />
     </Page>
   );
 }

@@ -46,6 +46,12 @@ const NavBar = () => {
           >
             Spells
           </Link>
+          <Link
+            href="/General"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Discussion
+          </Link>
         </div>
         <div></div>
       </div>

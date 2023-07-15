@@ -23,6 +23,17 @@ body {
   overflow-x: hidden;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 section {
   border-bottom: 1px solid #cacaca;
   padding: 1rem 0.5rem;
@@ -51,6 +62,20 @@ select:disabled {
   border-color: transparent;
   background: transparent;
   appearance: none;
+}
+
+hr {
+  margin: 1rem 0 0.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .view-label {
@@ -109,5 +134,6 @@ select:disabled {
 }
 
 .comment h6 {
-  font-weight: 600;
+  font-weight: 400;
+  background: #99f6e4;
 }

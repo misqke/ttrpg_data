@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 
 const ViewTalent = ({ talent }) => {
+  const [originalTalent, setOriginalTalent] = useState(talent);
   const [name, setName] = useState(talent.name);
   const [tier, setTier] = useState(talent.tier);
   const [cost, setCost] = useState(talent.cost);
@@ -16,6 +17,14 @@ const ViewTalent = ({ talent }) => {
   const [edit, setEdit] = useState(false);
 
   const handleEditMode = () => {
+    if (edit) {
+      setName(originalTalent.name);
+      setTier(originalTalent.tier);
+      setCost(originalTalent.cost);
+      setRanks(originalTalent.ranks);
+      setPrerequisites(originalTalent.prerequisites);
+      setDescription(originalTalent.description);
+    }
     setEdit((prev) => !prev);
   };
 
@@ -30,6 +39,7 @@ const ViewTalent = ({ talent }) => {
       prerequisites,
       description,
     });
+    setOriginalTalent(data);
     setEdit(false);
   };
 
