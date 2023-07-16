@@ -53,6 +53,12 @@ const NavBar = () => {
             Fighting Styles
           </Link>
           <Link
+            href="/arcane_specializations"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Arcane Specializations
+          </Link>
+          <Link
             href="/GeneralRules"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           >

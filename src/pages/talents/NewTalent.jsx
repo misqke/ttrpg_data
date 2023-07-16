@@ -28,6 +28,7 @@ const NewAbility = () => {
 
   return (
     <Page>
+      <h2>New Talent</h2>
       <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
         <div>
           <label className="block" htmlFor="name">
@@ -100,7 +101,7 @@ const NewAbility = () => {
           />
         </div>
 
-        <button className="button ms-auto" type="submit">
+        <button className="button mt-4 ms-auto" type="submit">
           Submit
         </button>
       </form>

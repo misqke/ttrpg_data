@@ -4,41 +4,41 @@ import axios from "axios";
 
 import { useRouter } from "next/router";
 
-const NewFightingStyle = () => {
+const NewArcaneSpecialization = () => {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const [school, setSchool] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post("/api/fightingStyles", {
-      name,
+    const { data } = await axios.post("/api/arcaneSpecializations", {
+      school,
       description,
     });
-    router.push("/fighting_styles");
+    router.push("/arcane_specializations");
   };
 
   return (
     <Page>
-      <h2>New Fighting Style</h2>
-      <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
+      <h2>New Arcane Specialization</h2>
+      <form onSubmit={(e) => handleSubmit(e)} classschool="flex flex-col gap-4">
         <div>
-          <label className="block" htmlFor="name">
-            Name
+          <label classschool="block" htmlFor="school">
+            school
           </label>
           <input
-            id="name"
+            id="school"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={school}
+            onChange={(e) => setSchool(e.target.value)}
           />
         </div>
         <div>
-          <label className="block" htmlFor="description">
+          <label classschool="block" htmlFor="description">
             Description
           </label>
           <textarea
-            className="w-full"
+            classschool="w-full"
             id="description"
             value={description}
             rows={5}
@@ -54,4 +54,4 @@ const NewFightingStyle = () => {
   );
 };
 
-export default NewFightingStyle;
+export default NewArcaneSpecialization;

@@ -44,6 +44,7 @@ const NewSpell = () => {
 
   return (
     <Page>
+      <h2>New Spell</h2>
       <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-4">
         <div className="flex row items-start">
           <label className="view-label">Name: </label>
