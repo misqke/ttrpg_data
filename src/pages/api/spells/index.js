@@ -19,6 +19,12 @@ export default async function handler(req, res) {
     const updatedSpell = await updateSpell(spell, spellLevels);
     res.status(200).json(updatedSpell);
   }
+  // DELETE
+  else if (req.method === "DELETE") {
+    const spellLevel = req.body;
+    await deleteSpellLevel(spellLevel);
+    res.status(200).json(spellLevel);
+  }
 }
 
 const getSpell = async (id) => {
@@ -27,7 +33,10 @@ const getSpell = async (id) => {
     .from("spell_levels")
     .select("*")
     .eq("spell_id", id);
-  return { spell: spell.data[0], spellLevels: spellLevels.data };
+  const sortedSpellLevels = spellLevels.data.sort((a, b) =>
+    a.level > b.level ? 1 : a.level < b.level ? -1 : 0
+  );
+  return { spell: spell.data[0], spellLevels: sortedSpellLevels };
 };
 
 const insertSpell = async (spell, spellLevels) => {
@@ -47,9 +56,9 @@ const updateSpell = async (spell, spellLevels) => {
   spellLevels.forEach(async (sl) => {
     await supabase.from("spell_levels").update(sl).eq("id", sl.id);
   });
-  // const updatedSpellLevels = await supabase
-  //   .from("spell_levels")
-  //   .update(spellLevels)
-  //   .select();
   return { spell, spellLevels };
+};
+
+const deleteSpellLevel = async (spellLevel) => {
+  await supabase.from("spell_levels").delete().eq("id", spellLevel.id);
 };

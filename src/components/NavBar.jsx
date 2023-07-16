@@ -53,10 +53,22 @@ const NavBar = () => {
             Fighting Styles
           </Link>
           <Link
+            href="/GeneralRules"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            General Rules
+          </Link>
+          <Link
+            href="/CombatRules"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Combat Rules
+          </Link>
+          <Link
             href="/General"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           >
-            Discussion
+            General Discussion
           </Link>
         </div>
         <div></div>

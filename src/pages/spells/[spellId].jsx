@@ -25,6 +25,16 @@ const ViewSpell = ({ spellData }) => {
     setEdit(false);
   };
 
+  // const handleDeleteSpellLevel = async (index) => {
+  //   const { data } = await axios.delete("/api/spells", spellLevels[index]);
+  //   const updatedSpellLevels = spellLevels.filter((sl, i) => i !== index);
+  //   setSpellLevels(updatedSpellLevels);
+  //   setOriginalSpellData((prev) => ({
+  //     ...prev,
+  //     spellLevels: updatedSpellLevels,
+  //   }));
+  // };
+
   return (
     <Page>
       {spell ? (
@@ -117,87 +127,94 @@ const ViewSpell = ({ spellData }) => {
                       Duration
                     </th>
                     <th className="border border-slate-300 p-1">Description</th>
+                    {/* {edit && <th></th>} */}
                   </tr>
                 </thead>
                 <tbody>
-                  {spellLevels
-                    .sort((a, b) =>
-                      a.level > b.level ? 1 : a.level < b.level ? -1 : 0
-                    )
-                    .map((s, i) => (
-                      <tr key={s.id}>
-                        <td className="border border-slate-300 p-1">
-                          <input
-                            type="text"
-                            disabled={!edit}
-                            value={spellLevels[i].level}
-                            onChange={(e) =>
-                              setSpellLevels((prev) => [
-                                ...prev.slice(0, i),
-                                { ...prev[i], level: e.target.value },
-                                ...prev.slice(i + 1),
-                              ])
-                            }
-                          />
+                  {spellLevels.map((s, i) => (
+                    <tr key={s.id}>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].level}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], level: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].magic_points}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], magic_points: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].range}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], range: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].duration}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], duration: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].description}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], description: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      {/* {edit && (
+                        <td>
+                          <button
+                            type="button"
+                            onClick={(e) => handleDeleteSpellLevel(i)}
+                          >
+                            delete
+                          </button>
                         </td>
-                        <td className="border border-slate-300 p-1">
-                          <input
-                            type="text"
-                            disabled={!edit}
-                            value={spellLevels[i].magic_points}
-                            onChange={(e) =>
-                              setSpellLevels((prev) => [
-                                ...prev.slice(0, i),
-                                { ...prev[i], magic_points: e.target.value },
-                                ...prev.slice(i + 1),
-                              ])
-                            }
-                          />
-                        </td>
-                        <td className="border border-slate-300 p-1">
-                          <input
-                            type="text"
-                            disabled={!edit}
-                            value={spellLevels[i].range}
-                            onChange={(e) =>
-                              setSpellLevels((prev) => [
-                                ...prev.slice(0, i),
-                                { ...prev[i], range: e.target.value },
-                                ...prev.slice(i + 1),
-                              ])
-                            }
-                          />
-                        </td>
-                        <td className="border border-slate-300 p-1">
-                          <input
-                            type="text"
-                            disabled={!edit}
-                            value={spellLevels[i].duration}
-                            onChange={(e) =>
-                              setSpellLevels((prev) => [
-                                ...prev.slice(0, i),
-                                { ...prev[i], duration: e.target.value },
-                                ...prev.slice(i + 1),
-                              ])
-                            }
-                          />
-                        </td>
-                        <td className="border border-slate-300 p-1">
-                          <input
-                            type="text"
-                            disabled={!edit}
-                            value={spellLevels[i].description}
-                            onChange={(e) =>
-                              setSpellLevels((prev) => [
-                                ...prev.slice(0, i),
-                                { ...prev[i], description: e.target.value },
-                                ...prev.slice(i + 1),
-                              ])
-                            }
-                          />
-                        </td>
-                      </tr>
-                    ))}
+                      )} */}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
