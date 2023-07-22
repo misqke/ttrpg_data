@@ -121,6 +121,9 @@ const ViewSpell = ({ spellData }) => {
                 <thead className="bg-teal-500  text-white">
                   <tr>
                     <th className="border border-slate-300 p-1 w-5">Level</th>
+                    <th className="border border-slate-300 p-1 w-5">
+                      Req Level
+                    </th>
                     <th className="border border-slate-300 p-1 w-10">MP</th>
                     <th className="border border-slate-300 p-1 w-28">Range</th>
                     <th className="border border-slate-300 p-1 w-28">
@@ -142,6 +145,20 @@ const ViewSpell = ({ spellData }) => {
                             setSpellLevels((prev) => [
                               ...prev.slice(0, i),
                               { ...prev[i], level: e.target.value },
+                              ...prev.slice(i + 1),
+                            ])
+                          }
+                        />
+                      </td>
+                      <td className="border border-slate-300 p-1">
+                        <input
+                          type="text"
+                          disabled={!edit}
+                          value={spellLevels[i].required_level}
+                          onChange={(e) =>
+                            setSpellLevels((prev) => [
+                              ...prev.slice(0, i),
+                              { ...prev[i], required_level: e.target.value },
                               ...prev.slice(i + 1),
                             ])
                           }

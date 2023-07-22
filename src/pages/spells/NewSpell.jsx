@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 class SpellLevel {
   constructor() {
     this.level = 1;
+    this.required_level = 1;
     this.magic_points = 1;
     this.range = "";
     this.duration = "Instantaneous";
@@ -111,6 +112,7 @@ const NewSpell = () => {
             <thead>
               <tr>
                 <th className="p-1 w-5">Level</th>
+                <th className="p-1 w-5">Req Level</th>
                 <th className="p-1 w-10">MP</th>
                 <th className="p-1 w-28">Range</th>
                 <th className="p-1 w-28">Duration</th>
@@ -129,6 +131,19 @@ const NewSpell = () => {
                         setSpellLevels((prev) => [
                           ...prev.slice(0, i),
                           { ...prev[i], level: e.target.value },
+                          ...prev.slice(i + 1),
+                        ])
+                      }
+                    />
+                  </td>
+                  <td className="border border-slate-300 p-1">
+                    <input
+                      type="number"
+                      value={spellLevels[i].required_level}
+                      onChange={(e) =>
+                        setSpellLevels((prev) => [
+                          ...prev.slice(0, i),
+                          { ...prev[i], required_level: e.target.value },
                           ...prev.slice(i + 1),
                         ])
                       }

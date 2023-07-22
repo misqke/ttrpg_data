@@ -48,7 +48,7 @@ const NewAbility = () => {
           <input
             id="tier"
             type="number"
-            min="1"
+            min="0"
             value={tier}
             onChange={(e) => setTier(e.target.value)}
           />

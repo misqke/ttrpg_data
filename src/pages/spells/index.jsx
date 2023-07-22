@@ -35,9 +35,8 @@ export default function Talent({ spells }) {
         Spells are unlocked though lineage and background features as well as by
         spending talent points when you level up on Spell Talents (Spells: Tier
         1, Spells: Tier 2, etc.). Each spell has a Tier and a number of Levels
-        the spell can be cast at. In order to cast a spell at a given level,
-        your character level must be equal to or greater than the spells Tier
-        multiplied by the spells Level.
+        the spell can be cast at, as well as a required character level to cast
+        the spell at that level.
       </p>
       <hr />
 
@@ -50,6 +49,7 @@ export default function Talent({ spells }) {
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
+            <option value={4}>4</option>
           </select>
         </div>
         <table className="border-collapse border border-slate-300">
