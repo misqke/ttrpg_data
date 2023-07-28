@@ -46,6 +46,7 @@ const NavBar = () => {
           >
             Spells
           </Link>
+
           <Link
             href="/fighting_styles"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
@@ -59,6 +60,12 @@ const NavBar = () => {
             Arcane Specializations
           </Link>
           <Link
+            href="/meta_magic"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Meta Magic
+          </Link>
+          <Link
             href="/GeneralRules"
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           >
@@ -69,6 +76,12 @@ const NavBar = () => {
             className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
           >
             Combat Rules
+          </Link>
+          <Link
+            href="/combat_maneuvers"
+            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Combat Maneuvers
           </Link>
           <Link
             href="/General"
