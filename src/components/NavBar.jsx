@@ -3,89 +3,107 @@ import Link from "next/link";
 
 const NavBar = () => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6 w-screen">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-xl tracking-tight">
-          <Link
-            href="/"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            TTRPG Data
-          </Link>
-        </span>
-      </div>
-      <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-          <svg
-            className="fill-current h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
-      </div>
+    <nav className="flex items-center justify-between flex-wrap bg-teal-500 py-2 px-4 w-screen">
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div className="text-sm lg:flex-grow">
-          <Link
-            href="/"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
+        <Link href="/" className="block text-teal-200 hover:text-white mr-4">
+          TTRPG Data
+        </Link>
+
+        <div className="text-sm nav-row">
+          <Link href="/" className="block text-teal-200 hover:text-white mr-4">
             Character Creation
           </Link>
           <Link
             href="/talents"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            className="block text-teal-200 hover:text-white mr-4"
           >
             Talents
           </Link>
-          <Link
-            href="/spells"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Spells
-          </Link>
+          <div className="block text-teal-200 hover:text-white mr-4 navDropdown">
+            <span>Magic</span>
+            <ul>
+              <li>
+                <Link
+                  href="/spells"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Spells
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/arcane_specializations"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Arcane Specializations
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/meta_magic"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Meta Magic
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="block text-teal-200 hover:text-white mr-4 navDropdown">
+            <span>Martial</span>
+            <ul>
+              <li>
+                <Link
+                  href="/fighting_styles"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Fighting Styles
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/combat_maneuvers"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Combat Maneuvers
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="block text-teal-200 hover:text-white mr-4 navDropdown">
+            <span>Rules</span>
+            <ul>
+              <li>
+                <Link
+                  href="/GeneralRules"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  General Rules
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/CombatRules"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Combat Rules
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/RestingRules"
+                  className="block text-teal-200 hover:text-white mr-4"
+                >
+                  Resting Rules
+                </Link>
+              </li>
+            </ul>
+          </div>
 
           <Link
-            href="/fighting_styles"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Fighting Styles
-          </Link>
-          <Link
-            href="/arcane_specializations"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Arcane Specializations
-          </Link>
-          <Link
-            href="/meta_magic"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Meta Magic
-          </Link>
-          <Link
-            href="/GeneralRules"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            General Rules
-          </Link>
-          <Link
-            href="/CombatRules"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Combat Rules
-          </Link>
-          <Link
-            href="/combat_maneuvers"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Combat Maneuvers
-          </Link>
-          <Link
             href="/General"
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            className="block text-teal-200 hover:text-white mr-4"
           >
             General Discussion
           </Link>

@@ -78,6 +78,70 @@ h2 {
   font-weight: 500;
 }
 
+.nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-row > * {
+  padding: 0.25rem;
+}
+
+.nav-row a {
+  width: max-content;
+  height: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .nav-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-row > * {
+    width: 100%;
+  }
+
+  .nav-row a,
+  .nav-row span {
+    width: 100%;
+  }
+}
+
+.navDropdown {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: max-content;
+}
+
+.navDropdown span {
+  cursor: default;
+}
+
+.navDropdown:hover {
+  overflow: visible;
+}
+
+.navDropdown ul {
+  position: absolute;
+  top: 100%;
+  background: #14b8a6;
+  width: max-content;
+  z-index: 100;
+}
+
+.navDropdown ul li {
+  padding: 0.5rem 0.25rem;
+  border-top: 1px solid #cacaca;
+}
+
+.navDropdown ul li a {
+  width: 100%;
+}
+
 .view-label {
   font-weight: 600;
   margin: 4px;
