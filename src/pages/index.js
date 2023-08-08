@@ -62,19 +62,22 @@ export default function Home({ lineage, background }) {
           0 or 1 talents.
         </p>
         <p>
-          Each time you gain a level, you gain two talent points that can be
-          spent on talents of any tier for which you are a high enough level.
+          Every even level you gain 2 talent points and + 1 to an ability score
+          of your choice. Ability scores can't be raised past 16 until level 6,
+          18 until level 10. Every odd level you gain 3 talent points.
         </p>
         <p>
           New tiers of talents are unlocked at odd levels (tier 2 at level 3,
           tier 3 at level 5, etc.)
         </p>
         <p>
-          Each level you roll 2d8. Your max hit points increases by the total of
-          one of the die rolls plus your CON modifier. Your max magic points
-          increases the total of the other die roll plus your WIS modifier. You
-          choose which roll is applied to which after seeing the results.
+          Each level you roll 1d8 and 1d6. Your max hit points increases by the
+          total of one of the die rolls plus your CON modifier. Your max magic
+          points increases the total of the other die roll plus your WIS
+          modifier. You choose which roll is applied to which after seeing the
+          results.
         </p>
+        <p>Proficiency bonus progresses the same as 5e.</p>
       </section>
       <CommentBox topic="character" id={0} />
     </Page>

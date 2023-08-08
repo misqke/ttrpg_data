@@ -131,15 +131,17 @@ h2 {
   background: #14b8a6;
   width: max-content;
   z-index: 100;
+  box-shadow: 0px 4px 6px 2px #3333;
 }
 
 .navDropdown ul li {
   padding: 0.5rem 0.25rem;
-  border-top: 1px solid #cacaca;
+  /* border-bottom: 1px solid #cacaca; */
 }
 
 .navDropdown ul li a {
   width: 100%;
+  height: 100%;
 }
 
 .view-label {
