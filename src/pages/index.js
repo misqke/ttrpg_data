@@ -14,12 +14,16 @@ export default function Home({ lineage, background }) {
           Standard point buy method. All scores start at 8 and you have 27
           points to spend. No score can exceed 15.
         </p>
+        <p>
+          You start the game with a number of hit points equal to your
+          constitution score and a number of magic points equal to your wisdom
+          score.
+        </p>
       </section>
       <section>
         <h2 className="text-lg text-bold">Lineage</h2>
         <p>
-          You have X number of lineage points to pucharse the abilities listed
-          below with.
+          You have 9 lineage points to pucharse the abilities listed below with.
         </p>
         <div className="table-container">
           <table className="border-collapse border border-slate-300">
@@ -50,10 +54,7 @@ export default function Home({ lineage, background }) {
       </section>
       <section>
         <h2 className="text-lg text-bold">Background</h2>
-        <p>
-          You have X number of background points that can be spent on Tier 0
-          Talents.
-        </p>
+        <p>You have 6 background points that can be spent on Tier 0 Talents.</p>
       </section>
       <section>
         <h2>Leveling</h2>
@@ -62,18 +63,22 @@ export default function Home({ lineage, background }) {
           0 or 1 talents.
         </p>
         <p>
-          Every even level you gain 2 talent points and + 1 to an ability score
-          of your choice. Ability scores can't be raised past 16 until level 6,
-          18 until level 10. Every odd level you gain 3 talent points.
+          Whenever you gain a level you gain 2 talent points you can spend on
+          any talents that you qualify for.
         </p>
         <p>
-          New tiers of talents are unlocked at odd levels (tier 2 at level 3,
-          tier 3 at level 5, etc.)
+          Every odd level unlocks a new talent tier (tier 2 at level 3, tier 3
+          at level 5, etc.)
+        </p>
+        <p>
+          Every even level you can increase one of your ability scores by 1. You
+          can't advance an ability score past 16 until level 6 or past 18 until
+          level 10.
         </p>
         <p>
           Each level you roll 1d8 and 1d6. Your max hit points increases by the
           total of one of the die rolls plus your CON modifier. Your max magic
-          points increases the total of the other die roll plus your WIS
+          points increases by the total of the other die roll plus your WIS
           modifier. You choose which roll is applied to which after seeing the
           results.
         </p>
