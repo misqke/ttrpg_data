@@ -26,7 +26,7 @@ const ViewMetaMagic = ({ metaMagicData }) => {
   return (
     <Page>
       <div className="flex row items-center justify-between">
-        <Link className="button" href={"/combat_maneuvers"}>
+        <Link className="button" href={"/meta_magic"}>
           Back
         </Link>
         <button className="button" type="button" onClick={handleEditMode}>
