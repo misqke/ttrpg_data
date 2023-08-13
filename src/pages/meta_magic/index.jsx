@@ -16,7 +16,7 @@ export default function Talent({ metaMagics }) {
     <Page>
       <div className="flex row items-center justify-between">
         <h1>Meta Magic</h1>
-        <Link className="button" href={"/combat_maneuvers/NewCombatManeuver"}>
+        <Link className="button" href={"/meta_magic/NewMetaMagic"}>
           New Meta Magic
         </Link>
       </div>
