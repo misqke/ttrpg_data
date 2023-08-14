@@ -15,9 +15,8 @@ export default function Home({ lineage, background }) {
           points to spend. No score can exceed 15.
         </p>
         <p>
-          You start the game with a number of hit points equal to your
-          constitution score and a number of magic points equal to your wisdom
-          score.
+          You start the game with a number of hit points equal to 8 + your CON
+          modifier and a number of magic points equal to 8 + your WIS modifier.
         </p>
       </section>
       <section>
@@ -54,7 +53,10 @@ export default function Home({ lineage, background }) {
       </section>
       <section>
         <h2 className="text-lg text-bold">Background</h2>
-        <p>You have 6 background points that can be spent on Tier 0 Talents.</p>
+        <p>
+          Choose 1 saving throw and 1 skill to gain proficiency in. You have 6
+          background points that can be spent on Tier 0 Talents.
+        </p>
       </section>
       <section>
         <h2>Leveling</h2>
@@ -64,16 +66,13 @@ export default function Home({ lineage, background }) {
         </p>
         <p>
           Whenever you gain a level you gain 2 talent points you can spend on
-          any talents that you qualify for.
+          any talents that you qualify for. You can also increase one ability
+          score of your choice by 1. No ability score can exceed 16 until level
+          6, 18 until level 11, 20 until level 16, or 22.
         </p>
         <p>
           Every odd level unlocks a new talent tier (tier 2 at level 3, tier 3
           at level 5, etc.)
-        </p>
-        <p>
-          Every even level you can increase one of your ability scores by 1. You
-          can't advance an ability score past 16 until level 6 or past 18 until
-          level 10.
         </p>
         <p>
           Each level you roll 1d8 and 1d6. Your max hit points increases by the

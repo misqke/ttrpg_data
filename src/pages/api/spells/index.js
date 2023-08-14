@@ -52,11 +52,15 @@ const insertSpell = async (spell, spellLevels) => {
 };
 
 const updateSpell = async (spell, spellLevels) => {
-  const updatedSpell = await supabase.from("spells").update(spell).select();
+  const updatedSpell = await supabase
+    .from("spells")
+    .update(spell)
+    .eq("id", spell.id)
+    .select();
   spellLevels.forEach(async (sl) => {
     await supabase.from("spell_levels").update(sl).eq("id", sl.id);
   });
-  return { spell, spellLevels };
+  return { updatedSpell, spellLevels };
 };
 
 const deleteSpellLevel = async (spellLevel) => {
