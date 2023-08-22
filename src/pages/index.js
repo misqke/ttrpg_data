@@ -7,6 +7,9 @@ export default function Home({ lineage, background }) {
   return (
     <Page>
       <h1 className="text-2xl text-bolder">Character Creation</h1>
+      <a download href="characterSheet.pdf">
+        Download Character Sheet
+      </a>
       <hr />
       <section>
         <h2 className="text-lg text-bold">Ability Scores</h2>
